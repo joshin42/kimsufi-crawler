@@ -101,7 +101,12 @@ def run_crawler():
                 state_id = '%s_available_in_%s' % (server, '+'.join(zones))
                 update_state(state_id, True, message)
             else:
-                update_state(state_id, False)
+                try:
+                  stateid
+                except NameError:
+                  state_id = ''
+                else:
+                  update_state(state_id, False)
 
 
 if __name__ == "__main__":
